@@ -20,6 +20,7 @@ class PredictionRecord(Base):
 
     id = Column(String, primary_key=True)
     user_id = Column(String, nullable=False, index=True)
+    cart = Column(JSON, nullable=False)
     score = Column(Float, nullable=False)
     risk = Column(String, nullable=False)
     action = Column(String, nullable=False)
@@ -40,10 +41,11 @@ def get_db():  # noqa: ANN201
         db.close()
 
 
-def save_prediction(db: Session, prediction_id: str, user_id: str, result: dict) -> None:
+def save_prediction(db: Session, prediction_id: str, user_id: str, cart: list, result: dict) -> None:
     record = PredictionRecord(
         id=prediction_id,
         user_id=user_id,
+        cart=cart,
         score=result["score"],
         risk=result["risk"],
         action=result["action"],

@@ -34,6 +34,7 @@ async def predict(req: PredictRequest, db: Session = Depends(get_db)) -> Predict
             db,
             prediction_id=str(uuid.uuid4()),
             user_id=req.user_id,
+            cart=[p.model_dump() for p in req.cart],
             result=result.model_dump(),
         )
         return result
