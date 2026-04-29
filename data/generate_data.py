@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 import random
+from pathlib import Path
+
 import pandas as pd
 
 data = []
@@ -22,6 +26,7 @@ df = pd.DataFrame(data, columns=[
     "cart_size", "similar_items", "avg_price", "return_prob"
 ])
 
-df.to_csv("synthetic_data.csv", index=False)
+output_path = Path(__file__).parent / "synthetic_data.csv"
+df.to_csv(output_path, index=False)
 
 print("Synthetic data generated!")

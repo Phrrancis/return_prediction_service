@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from typing import Any, TypedDict
+from typing import TYPE_CHECKING, TypedDict
+
+if TYPE_CHECKING:
+    from backend.schemas import Product
 
 
 class FeatureSet(TypedDict):
@@ -11,7 +14,7 @@ class FeatureSet(TypedDict):
     category_diversity: float
 
 
-def extract_features(cart: list[Any]) -> FeatureSet:
+def extract_features(cart: list[Product]) -> FeatureSet:
     if not cart:
         return {
             "cart_size": 0,

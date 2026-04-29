@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
-
 from backend.features import FeatureSet, extract_features
+from backend.schemas import PredictRequest
 
 HIGH_CART_SIZE_THRESHOLD = 3
 SIMILAR_ITEMS_THRESHOLD = 1
@@ -38,7 +37,7 @@ def _risk_from_score(score: float) -> tuple[str, str]:
     return "low", "none"
 
 
-def predict_return_risk(req: Any) -> dict[str, Any]:
+def predict_return_risk(req: PredictRequest) -> dict[str, object]:
     features = extract_features(req.cart)
     score, reasons = _score_features(features)
     risk, action = _risk_from_score(score)

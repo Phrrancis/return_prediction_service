@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from pydantic import BaseModel
-from typing import List
+
 
 class Product(BaseModel):
     product_id: str
@@ -7,6 +9,7 @@ class Product(BaseModel):
     category: str
     size: str
 
+
 class PredictRequest(BaseModel):
     user_id: str
-    cart: List[Product]
+    cart: list[Product]
