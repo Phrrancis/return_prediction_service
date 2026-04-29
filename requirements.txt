@@ -1,5 +1,9 @@
 fastapi
 uvicorn
 pydantic
+pydantic-settings
 pytest
 pandas
+scikit-learn
+sqlalchemy
+httpx
