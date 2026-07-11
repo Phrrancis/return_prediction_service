@@ -3,7 +3,8 @@ uvicorn
 pydantic
 pydantic-settings
 pytest
-pandas
-scikit-learn
-sqlalchemy
 httpx
+numpy
+scikit-learn
+lightgbm
+shap

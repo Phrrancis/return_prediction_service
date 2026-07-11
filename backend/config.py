@@ -6,26 +6,19 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
-    # Risk score thresholds
-    high_risk_threshold: float = 0.6
-    medium_risk_threshold: float = 0.3
-
-    # Scoring penalties
-    high_cart_size_threshold: int = 3
-    similar_items_threshold: int = 1
-    low_price_threshold: float = 30.0
-    high_cart_size_penalty: float = 0.4
-    similar_items_penalty: float = 0.4
-    low_price_penalty: float = 0.1
-
-    # Auth
+    # Auth for admin endpoints (train/score/report). Shopify webhooks use HMAC instead.
     api_key: str = "dev-key"
 
-    # Database
-    database_url: str = "sqlite:///./predictions.db"
+    # Shopify webhook HMAC verification
+    shopify_webhook_secret: str = "dev-secret"
 
-    # ML model path
-    ml_model_path: str = "model_artifacts/model.pkl"
+    # Label maturation: an outcome is only trustworthy after the return window
+    # plus a logistics buffer has elapsed since order creation.
+    return_window_days: int = 30
+    logistics_buffer_days: int = 14
+
+    # SQLite database file (5-table event-sourced schema, see backend/db.py)
+    db_path: str = "returnml.db"
 
 
 settings = Settings()

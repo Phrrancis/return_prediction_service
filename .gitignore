@@ -7,5 +7,6 @@ __pycache__/
 dist/
 build/
 .env
-predictions.db
-model_artifacts/model.pkl
+*.db
+models/*.pkl
+reports/*.json

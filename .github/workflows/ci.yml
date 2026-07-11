@@ -21,8 +21,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Train ML model
-        run: PYTHONPATH=. python data/train_model.py
-
       - name: Run tests
-        run: PYTHONPATH=. pytest backend/test_predictive_risk_evaluation.py -v
+        run: PYTHONPATH=. pytest backend/ -v
